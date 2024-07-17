@@ -31,3 +31,4 @@
 /home/jarvis-l/projects/api-remember-it/obj/Debug/net8.0/api-remember-it.pdb
 /home/jarvis-l/projects/api-remember-it/obj/Debug/net8.0/api-remember-it.genruntimeconfig.cache
 /home/jarvis-l/projects/api-remember-it/obj/Debug/net8.0/ref/api-remember-it.dll
+/home/jarvis-l/projects/api-remember-it/obj/Debug/net8.0/api-remember-it.sourcelink.json
