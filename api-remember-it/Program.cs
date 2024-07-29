@@ -1,9 +1,17 @@
+using api_remember_it.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<RememberItDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration["rememberItConnectionString"]);
+});
 
 var app = builder.Build();
 
