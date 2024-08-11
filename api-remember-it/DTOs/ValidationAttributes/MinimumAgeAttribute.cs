@@ -8,6 +8,7 @@ namespace api_remember_it.DTOs.ValidationAttributes
         public MinimumAgeAttribute(int minimumAge) 
         {
             _minimumAge = minimumAge;
+            base.ErrorMessage = "The user is younger than " + _minimumAge + " years old";
         }
 
         public override bool IsValid(object? value)
