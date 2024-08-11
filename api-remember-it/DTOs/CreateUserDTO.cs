@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using api_remember_it.DTOs.ValidationAttributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace api_remember_it.DTOs
 {
@@ -12,7 +13,7 @@ namespace api_remember_it.DTOs
         public string Password { get; set; } = string.Empty;
         [Required, Compare("Password")]
         public string ConfirmPassword { get; set; } = string.Empty;
-        [Required]
+        [Required, MinimumAge(13)]
         public DateTime Birthday { get; set; }
         public string? ProfilePictureUrl { get; set; }
         public string? PhoneNumber { get; set; }
