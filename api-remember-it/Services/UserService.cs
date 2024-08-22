@@ -35,5 +35,22 @@ namespace api_remember_it.Services
 
             _userRepository.Create(user);
         }
+
+        public string Auth(AuthUserDTO userDTO)
+        {
+            var dbUser = _userRepository.GetUserByEmail(userDTO.Email);
+
+            if (dbUser == null)
+                throw new Exception("User not exists");
+
+            bool passwordMatch = PasswordUtil.VerifyPasswordHash(userDTO.Password, dbUser.PasswordHash, dbUser.PasswordSalt);
+
+            if (!passwordMatch)
+                throw new Exception("Wrong password");
+
+            string token = JwtTokenUtil.GetToken(dbUser);
+
+            return token;
+        }
     }
 }

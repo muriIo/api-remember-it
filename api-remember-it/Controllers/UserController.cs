@@ -48,5 +48,36 @@ namespace api_remember_it.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpPost]
+        [Route("Auth")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [SwaggerResponse(statusCode: 200, description: "Works correctly.", type: typeof(ResponseDTO))]
+        [SwaggerResponse(statusCode: 400, description: "Internal Error.", type: typeof(ResponseDTO))]
+        [SwaggerOperation(OperationId = "POST", Summary = "auth", Description = "Register User.")]
+        public ActionResult Auth(AuthUserDTO user)
+        {
+            try
+            {
+                _logger.LogInformation("Authenticate user");
+                string token = _userService.Auth(user);
+
+                ResponseDTO response = new ResponseDTO();
+                response.Status = "Ok";
+                response.Message = "User authenticate";
+                response.Token = token;
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ex: " + ex.Message + " - Stack: " + ex.StackTrace);
+                ResponseDTO response = new ResponseDTO();
+                response.Status = "Error";
+                response.Message = ex.Message;
+                return BadRequest(response);
+            }
+        }
     }
 }

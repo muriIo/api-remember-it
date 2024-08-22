@@ -5,5 +5,7 @@ namespace api_remember_it.Interfaces
     public interface IUserService
     {
         public void Register(CreateUserDTO user);
+
+        public string Auth(AuthUserDTO user);
     }
 }
